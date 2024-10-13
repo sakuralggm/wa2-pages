@@ -30,10 +30,15 @@ checkboxes.forEach(function (checkbox, index) {
  */
 window.onload = function () {
     var div = document.createElement('div');
-    div.innerHTML = '<div style="position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px;">' +
-        '<button onclick="scrollToTop()">↑</button>' +
-        '<button onclick="scrollToOriginal()">↓</button>' +
-        '</div>';
+    div.style.position = 'fixed';
+    div.style.bottom = '20px';
+    div.style.right = '20px';
+    div.style.display = 'flex';
+    div.style.flexDirection = 'column';
+    div.style.gap = '10px';
+    div.style.zIndex = '1000'; // 确保按钮在移动端可见
+    div.innerHTML = '<button onclick="scrollToTop()">↑</button>' +
+        '<button onclick="scrollToOriginal()">↓</button>';
     document.body.appendChild(div);
 };
 
