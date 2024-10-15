@@ -55,3 +55,19 @@ function scrollToTop() {
 function scrollToOriginal() {
     window.scrollTo({ top: originalPosition, behavior: 'smooth' });
 }
+
+/**
+ * 打开页面后，自动滚动到上次关闭时的位置
+ */
+// 在页面加载完毕时，自动滚动到上次记录的滚动位置
+window.addEventListener('load', function () {
+    var lastScrollPosition = localStorage.getItem('lastScrollPosition-' + pathSuffix);
+    if (lastScrollPosition !== null) {
+        window.scrollTo({ top: parseInt(lastScrollPosition, 10), behavior: 'smooth' });
+    }
+});
+
+// 在页面卸载前，记录当前的滚动位置
+window.addEventListener('beforeunload', function () {
+    localStorage.setItem('lastScrollPosition-' + pathSuffix, window.scrollY);
+});
